@@ -1,0 +1,17 @@
+# Release script
+
+name: release
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  build:
+    steps:
+      - uses: Kir-Antipov/mc-publish@v2.1
+        with:
+          curseforge-id: 628330
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+
+          github-token: ${{ secrets.GITHUB_TOKEN }}
