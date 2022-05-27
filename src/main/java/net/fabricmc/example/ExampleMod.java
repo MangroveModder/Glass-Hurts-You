@@ -3,6 +3,12 @@ package net.fabricmc.example;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.minecraft.block.Material;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import java.util.Random;
 
 public class ExampleMod implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -16,6 +22,12 @@ public class ExampleMod implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
+		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, entity) -> {
+			if (state.getMaterial() == Material.GLASS) {
+				Random random = new Random();
+				player.damage(DamageSource.GENERIC, random.nextInt(1, 3));
+				player.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.BLOCKS, 1, random.nextFloat(1.0F, 1.3F));
+			}
+		});
 	}
 }
