@@ -1,14 +1,13 @@
 package mangrovemodder.glasshurtsyou;
 
 import net.fabricmc.api.ModInitializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.Material;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import java.util.Random;
+
 public class GlassHurtsYou implements ModInitializer {
 	@Override
 	public void onInitialize() {
